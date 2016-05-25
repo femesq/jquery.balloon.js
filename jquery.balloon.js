@@ -225,9 +225,10 @@
       $target.removeAttr('title');
       if(options.url && !$balloon.data('ajaxDisabled')) {
         clearTimeout($balloon.data('ajaxDelay'));
+        var balloon_obj = this;
         $balloon.data('ajaxDelay',
           setTimeout(function() {
-            $balloon.load($.isFunction(options.url) ? options.url(this) : options.url, function(res, sts, xhr) {
+            $balloon.load($.isFunction(options.url) ? options.url(balloon_obj) : options.url, function(res, sts, xhr) {
               if(sts !== 'success' && sts !== 'notmodified') { return; }
               $balloon.data('ajaxDisabled', true);
               if(options.ajaxContentsMaxAge >= 0) {
